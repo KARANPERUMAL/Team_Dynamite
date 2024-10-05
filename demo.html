@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency SOS App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Emergency SOS App</h1>
+        </header>
+
+        <div class="feature">
+            <h2>Send SOS Call & Message</h2>
+            <form id="sosForm">
+                <label for="sosNumber">Emergency Contact Phone Number:</label>
+                <input type="tel" id="sosNumber" placeholder="Enter phone number" required>
+                
+                <label for="sosMessage">Emergency Message:</label>
+                <textarea id="sosMessage" placeholder="Enter emergency message" required></textarea>
+                
+                <button type="button" id="sosCallButton">Send SOS Call & Message</button>
+            </form>
+            <p id="confirmationMessage" class="hidden"></p>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #ff4081;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.feature {
+    background-color: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff79a3;
+}
+
+input[type="tel"], textarea {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#confirmationMessage {
+    color: green;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sosCallButton = document.getElementById('sosCallButton');
+    const sosNumberInput = document.getElementById('sosNumber');
+    const sosMessageInput = document.getElementById('sosMessage');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    sosCallButton.addEventListener('click', function() {
+        const phoneNumber = sosNumberInput.value;
+        const message = sosMessageInput.value;
+
+        if (phoneNumber) {
+            // Make the call
+            window.open(`tel:${phoneNumber}`, '_self');
+
+            // Simulate sending an SMS (real SMS functionality requires server-side handling or an API)
+            // For demo purposes, we just show a confirmation message
+            confirmationMessage.textContent = `SOS Call is being made to ${phoneNumber}. Message: "${message}"`;
+            confirmationMessage.classList.remove('hidden');
+
+            // Clear input fields
+            sosNumberInput.value = '';
+            sosMessageInput.value = '';
+        } else {
+            alert('Please enter a valid phone number.');
+        }
+    });
+});
+
+
+// Require the Twilio library
+const twilio = require('twilio');
+
+// Your Account SID and Auth Token from twilio.com/console
+const accountSid = 'your_account_sid';
+const authToken = 'your_auth_token';
+const client = new twilio(accountSid, authToken);
+
+// Send an SMS
+client.messages.create({
+    body: 'This is your emergency message!',
+    to: '+918072044568', // Your emergency contact number
+    from: '+919342774502' // Your Twilio number
+})
+.then((message) => console.log(message.sid))
+.catch((error) => console.error(error));
+
+</script>

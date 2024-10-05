@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Dynamite</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>SheGuard</h1>
+        </header>
+
+        <!-- Emergency SOS Section -->
+        <div class="feature">
+            <h2>Emergency SOS</h2>
+            <p>In case of emergency, tap the SOS button to call and send a message to your emergency contact.</p>
+            <form id="sosForm">
+                <label for="sosNumber">Emergency Contact Phone Number:</label>
+                <input type="tel" id="SOSNumber" placeholder="Enter your Emergency Contact" required>
+                <label for="sosMessage">Emergency Message:</label>
+                <textarea id="sosMessage" placeholder="I'm looking for help"></textarea>
+                <button type="button" id="SOSCallButton">SOS Call & Message</button>
+            </form>
+        </div>
+
+        <!-- Selfie Intruder Section -->
+        <div class="feature">
+            <h2>Selfie Intruder Detection</h2>
+            <p>This feature captures a selfie of the intruder if they attempt to unlock the phone.</p>
+            <button id="selfieIntruderBtn">Enable Selfie Intruder</button>
+        </div>
+
+        <!-- Hidden Camera Detection Section -->
+        <div class="feature">
+            <h2>Hidden Camera Detection</h2>
+            <p>Detect hidden cameras using infrared or suspicious signals.</p>
+            <button id="detectCameraBtn"><a href=""></a>Start Hidden Camera Detection</button>
+        </div>
+
+        <!-- Parental Control Section -->
+        <div class="feature">
+            <h2>Parental Control</h2>
+            <p>Set restrictions on app usage, web browsing, and device control for safety.</p>
+            <button id="parentalControlBtn"><a href="demo2/index.html"> Set Parental Controls</a> </button>
+        </div>
+
+        <!-- Hotspot Mapping Section -->
+        <div class="feature">
+            <h2>Hotspot Mapping</h2>
+            <p>Find safe locations and public hotspots near you.</p>
+            <button > <a href="https://www.google.com/maps">View Safe Hotspots</a></button>
+            <div id="hotspotMap"></div>
+            <img src="imd2.jpg" class="img">
+        </div>
+
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
